@@ -8,14 +8,12 @@
 #include <string.h>
 #include <unistd.h>
 
-static void amogus_open(fuse_req_t req, struct fuse_file_info *fi)
-{
+static void amogus_open(fuse_req_t req, struct fuse_file_info *fi) {
   fuse_reply_open(req, fi);
 }
 
 static void amogus_read(fuse_req_t req, size_t size, off_t off,
-                        struct fuse_file_info *fi)
-{
+                        struct fuse_file_info *fi) {
   fuse_reply_buf(req, "amogus\n", size > 7 ? 7 : size);
 }
 
@@ -24,8 +22,7 @@ static const struct cuse_lowlevel_ops amogus_clop = {
     .read = amogus_read,
 };
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   const char *cusearg[] = {"amogus", "-f", "/dev/cuse"};
   const char *devarg[] = {"DEVNAME=amogus"};
 
